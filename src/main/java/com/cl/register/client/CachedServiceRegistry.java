@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
 /**
  * 服务注册中心客户端缓存的注册表
@@ -47,6 +49,13 @@ public class CachedServiceRegistry {
      * 代表了当前的本地缓存的服务注册表的一个版本号
      */
     private AtomicLong applicationsVersion = new AtomicLong(0L);
+
+    /**
+     * 客户端缓存注册表的读写锁
+     */
+    private ReentrantReadWriteLock applicationLock = new ReentrantReadWriteLock();
+    private WriteLock applicationWriteLock = applicationLock.writeLock();
+    private ReadLock applicationReadLock = applicationLock.readLock();
 
     public CachedServiceRegistry(RegisterClient registerClient, HttpSender httpSender) {
         this.fetchDeltaRegistryWorker = new FetchDeltaRegistryWorker();
@@ -155,7 +164,8 @@ public class CachedServiceRegistry {
      */
     private void mergeDeltaRegistry(DeltaRegistry deltaRegistry) {
 
-        synchronized (applications) {
+        try {
+            applicationWriteLock.lock();
 
             // 获取封装对象中的服务注册表
             Map<String, Map<String, ServiceInstance>> registry = applications.getReference().getRegistry();
@@ -192,6 +202,8 @@ public class CachedServiceRegistry {
                     }
                 }
             }
+        } finally {
+            applicationWriteLock.unlock();
         }
     }
 
@@ -249,7 +261,12 @@ public class CachedServiceRegistry {
      * @return
      */
     public Map<String, Map<String, ServiceInstance>> getRegistry() {
-        return applications.getReference().getRegistry();
+        try {
+            applicationReadLock.lock();
+            return applications.getReference().getRegistry();
+        } finally {
+            applicationReadLock.unlock();
+        }
     }
 
     /**
