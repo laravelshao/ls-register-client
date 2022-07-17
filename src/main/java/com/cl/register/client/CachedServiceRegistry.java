@@ -1,9 +1,9 @@
 package com.cl.register.client;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -171,7 +171,7 @@ public class CachedServiceRegistry {
             Map<String, Map<String, ServiceInstance>> registry = applications.getReference().getRegistry();
 
             // 获取增量注册表服务实例队列
-            LinkedList<RecentlyChangedServiceInstance> recentlyChangedQueue = deltaRegistry.getRecentlyChangedQueue();
+            Queue<RecentlyChangedServiceInstance> recentlyChangedQueue = deltaRegistry.getRecentlyChangedQueue();
 
             for (RecentlyChangedServiceInstance recentlyChangedItem : recentlyChangedQueue) {
 
