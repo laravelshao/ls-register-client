@@ -1,4 +1,4 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
 /**
  * 服务实例对象

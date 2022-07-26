@@ -1,4 +1,4 @@
-package com.cl.register.client.dto;
+package com.laravelshao.register.client.dto;
 
 /**
  * 注册请求对象

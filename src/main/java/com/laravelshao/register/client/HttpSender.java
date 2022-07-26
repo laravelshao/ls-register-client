@@ -1,15 +1,13 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
-import com.cl.register.client.dto.HeartbeatRequest;
-import com.cl.register.client.dto.HeartbeatResponse;
-import com.cl.register.client.dto.RegisterRequest;
-import com.cl.register.client.dto.RegisterResponse;
+import com.laravelshao.register.client.dto.HeartbeatRequest;
+import com.laravelshao.register.client.dto.HeartbeatResponse;
+import com.laravelshao.register.client.dto.RegisterRequest;
+import com.laravelshao.register.client.dto.RegisterResponse;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
-import com.cl.register.client.CachedServiceRegistry.RecentlyChangedServiceInstance;
 
 /**
  * HTTP 通信组件
@@ -85,7 +83,7 @@ public class HttpSender {
      * @return
      */
     public DeltaRegistry fetchDeltaRegistry() {
-        LinkedList<RecentlyChangedServiceInstance> recentlyChangedQueue = new LinkedList<>();
+        LinkedList<CachedServiceRegistry.RecentlyChangedServiceInstance> recentlyChangedQueue = new LinkedList<>();
 
         ServiceInstance serviceInstance = new ServiceInstance();
         serviceInstance.setHostname("order-service-01");
@@ -94,7 +92,7 @@ public class HttpSender {
         serviceInstance.setServiceInstanceId("ORDER-SERVICE-192.168.31.288:9000");
         serviceInstance.setServiceName("ORDER-SERVICE");
 
-        RecentlyChangedServiceInstance recentlyChangedItem = new RecentlyChangedServiceInstance(
+        CachedServiceRegistry.RecentlyChangedServiceInstance recentlyChangedItem = new CachedServiceRegistry.RecentlyChangedServiceInstance(
                 serviceInstance,
                 System.currentTimeMillis(),
                 "register");

@@ -1,4 +1,4 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
 /**
  * 注册中心客户端测试

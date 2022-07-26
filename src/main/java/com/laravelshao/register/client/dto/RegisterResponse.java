@@ -1,19 +1,19 @@
-package com.cl.register.client.dto;
+package com.laravelshao.register.client.dto;
 
 /**
- * 心跳响应对象
+ * 注册响应对象
  *
  * @author qinghua.shao
  * @date 2022/6/19
  * @since 1.0.0
  */
-public class HeartbeatResponse {
+public class RegisterResponse {
 
     public static final String SUCCESS = "success";
     public static final String FAILURE = "failure";
 
     /**
-     * 心跳响应状态：SUCCESS、FAILURE
+     * 注册响应状态：SUCCESS、FAILURE
      */
     private String status;
 

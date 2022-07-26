@@ -1,9 +1,9 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
-import com.cl.register.client.dto.HeartbeatRequest;
-import com.cl.register.client.dto.HeartbeatResponse;
-import com.cl.register.client.dto.RegisterRequest;
-import com.cl.register.client.dto.RegisterResponse;
+import com.laravelshao.register.client.dto.HeartbeatRequest;
+import com.laravelshao.register.client.dto.HeartbeatResponse;
+import com.laravelshao.register.client.dto.RegisterRequest;
+import com.laravelshao.register.client.dto.RegisterResponse;
 
 import java.util.UUID;
 

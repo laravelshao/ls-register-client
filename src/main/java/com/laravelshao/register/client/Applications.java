@@ -1,4 +1,4 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
 import java.util.HashMap;
 import java.util.Map;

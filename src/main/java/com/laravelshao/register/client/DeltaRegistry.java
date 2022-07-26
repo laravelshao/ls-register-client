@@ -1,6 +1,6 @@
-package com.cl.register.client;
+package com.laravelshao.register.client;
 
-import com.cl.register.client.CachedServiceRegistry.RecentlyChangedServiceInstance;
+import com.laravelshao.register.client.CachedServiceRegistry.RecentlyChangedServiceInstance;
 
 import java.util.Queue;
 
