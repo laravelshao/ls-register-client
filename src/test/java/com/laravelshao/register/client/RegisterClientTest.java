@@ -19,5 +19,4 @@ public class RegisterClientTest {
         // 关闭
         registerClient.shutdown();
     }
-
 }
